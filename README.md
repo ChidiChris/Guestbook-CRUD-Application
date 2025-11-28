@@ -1,14 +1,19 @@
-Guestbook CRUD Application (Single-File PHP Project)
+📝 Guestbook CRUD Application (Single-File PHP Project)
 
 A secure, database-driven Guestbook application built as part of the Bincom PHP/MySQL Beginners Class Test.
 The entire project runs inside one PHP file (guestbook.php) and demonstrates:
 
-✔ Create
-✔ Read
-✔ Update
-✔ Delete
-✔ Security (CSRF + Prepared Statements)
-✔ Clean UI with external CSS
+✅ Create
+
+✅ Read
+
+✅ Update
+
+✅ Delete
+
+✅ Security (CSRF + Prepared Statements)
+
+✅ Clean UI with external CSS
 
 📌 Project Features
 
@@ -40,12 +45,12 @@ guestbook/
 
 🛢️ Database Setup
 
-Database:
+Database Creation:
 
 CREATE DATABASE guestbook_db;
 
 
-Table:
+Table Creation:
 
 CREATE TABLE entries (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -54,20 +59,16 @@ CREATE TABLE entries (
     submission_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-📝 Original Test Question (Fully Included in README)
-
-Below is the exact requirement from the Bincom test, added for clarity and assessment:
-
-📄 Test Question / Assignment Requirements
+📝 Original Test Question (Fully Included)
 
 Goal:
 Create a functional, database-driven web application in a single PHP file demonstrating Full CRUD.
 
-Part 1: Database Setup
+Database Requirements:
 
-Create guestbook_db
+Database: guestbook_db
 
-Create table entries with:
+Table: entries
 
 id (INT, PK, Auto Increment)
 
@@ -78,11 +79,11 @@ message_text (TEXT)
 submission_time (DATETIME, default = CURRENT_TIMESTAMP)
 
 ⚙️ How the Application Works
-1. READ Operation
+1️⃣ READ Operation
 
 Establishes a secure MySQLi connection
 
-Fetches all entries with:
+Fetches all entries:
 
 SELECT * FROM entries ORDER BY submission_time DESC;
 
@@ -99,13 +100,9 @@ Edit button
 
 Delete button
 
-2. CREATE Operation (POST)
+2️⃣ CREATE Operation (POST)
 
-Users submit:
-
-Name
-
-Message
+Users submit: Name + Message
 
 Security includes:
 
@@ -115,24 +112,18 @@ Length checks
 
 CSRF token validation
 
-Prepared INSERT:
+Secure INSERT:
 
 INSERT INTO entries (guest_name, message_text) VALUES (?, ?);
 
 
-Redirect using PRG pattern:
+Redirects using PRG pattern (header("Location: guestbook.php"))
 
-header("Location: guestbook.php");
+3️⃣ UPDATE / EDIT Operation (POST)
 
-3. UPDATE / EDIT Operation (POST)
+Click Edit to load entry by ID
 
-When user clicks “Edit”:
-
-Entry is loaded using ID
-
-A pre-filled form appears
-
-User updates name or message
+Pre-filled form appears for updating
 
 Security checks:
 
@@ -144,17 +135,16 @@ CSRF token must match
 
 Fields validated & length checked
 
-UPDATE uses prepared statement:
+Secure UPDATE:
 
 UPDATE entries SET guest_name = ?, message_text = ? WHERE id = ? LIMIT 1;
 
 
-After update, redirect:
+Redirects after update:
 
-header("Location: guestbook.php");
-exit;
+header("Location: guestbook.php"); exit;
 
-4. DELETE Operation (GET + CSRF)
+4️⃣ DELETE Operation (GET + CSRF)
 
 Delete link includes:
 
@@ -169,12 +159,12 @@ CSRF token validated
 
 Entry existence confirmed
 
-Secure deletion with:
+Secure deletion:
 
 DELETE FROM entries WHERE id = ? LIMIT 1;
 
 
-Redirect to clear URL parameters
+Redirects to clear URL parameters
 
 🔐 Security Features
 Security Risk	Protection
@@ -183,106 +173,33 @@ XSS	htmlspecialchars()
 CSRF	Token stored in sessions
 URL Tampering	Strict numeric ID check
 Accidental Double Submit	Redirect after POST
-
 🎨 CSS Styling (style.css)
 
-Includes:
-
-Clean card layout
+Clean card layout for entries
 
 Form styling
 
 Edit form + main form alignment
 
-Buttons (Save, Cancel, Update, Delete)
+Buttons: Save, Cancel, Update, Delete
 
 Error messages
 
 Mobile-friendly responsive layout
 
-🧪 Submission Checklist (Updated: Full CRUD)
-✔ DATABASE
+🧪 Submission Checklist (Full CRUD)
 
- guestbook_db created
+✅ DATABASE: guestbook_db created, entries table correct
 
- entries table created correctly
+✅ READ: Connection successful, entries displayed in correct order
 
-✔ READ
+✅ CREATE: POST form works, input validated & sanitized, prepared statements used, redirects after POST
 
- Connection successful
+✅ UPDATE: Edit button pre-fills form, ID validated, CSRF checked, prepared UPDATE, redirects
 
- Entries displayed in correct order
+✅ DELETE: ID and CSRF validated, prepared DELETE, redirects
 
-✔ CREATE
-
- POST form working
-
- Validates & sanitizes input
-
- Inserts using prepared statements
-
- Redirect after POST
-
-✔ UPDATE (NEW)
-
- Edit button shows a pre-filled form
-
- ID validated & entry fetched safely
-
- CSRF validated
-
- Update uses prepared statements
-
- Redirect after update
-
-✔ DELETE
-
- Delete link passes ID
-
- CSRF token validated
-
- Prepared DELETE with WHERE clause
-
- Redirect after delete
-
-✔ STRUCTURE
-
- All logic in a single PHP file
-
- Output safely escaped
-
-📝 Original Test Requirements (With UPDATE Added)
-
-(The original test required only CRD, but this project extends it to true CRUD.)
-
-We now support:
-
-Create
-
-Read
-
-Update
-
-Delete
-
-The project still fulfills every test requirement plus additional functionality.
-
-🚀 How to Run Locally
-
-Install XAMPP/WAMP
-
-Start Apache + MySQL
-
-Create DB + Table
-
-Place project inside:
-
-htdocs/guestbook/
-
-
-Run from browser:
-
-http://localhost/guestbook/guestbook.php
+✅ STRUCTURE: All logic in a single PHP file, output safely escaped
 
 🔮 Future Improvements
 
@@ -297,6 +214,23 @@ User login system
 AJAX without reload
 
 Export to CSV
+
+🚀 How to Run Locally
+
+Install XAMPP/WAMP
+
+Start Apache + MySQL
+
+Create database + table as above
+
+Place project inside:
+
+htdocs/guestbook/
+
+
+Access in browser:
+
+http://localhost/guestbook/guestbook.php
 
 👤 Author
 
